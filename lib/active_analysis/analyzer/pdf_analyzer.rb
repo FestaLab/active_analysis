@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative "../analyzer"
+
 module ActiveAnalysis
   # Extracts width, height in pixels and number of pages from a pdf blob.
   #

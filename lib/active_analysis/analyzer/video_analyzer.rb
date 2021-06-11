@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative "../analyzer"
+
 module ActiveAnalysis
   # Extracts the following from a video blob:
   #

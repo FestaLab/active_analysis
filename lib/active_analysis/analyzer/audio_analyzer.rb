@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative "../analyzer"
+
 module ActiveAnalysis
   # Extracts duration (seconds) and bit_rate (bits/s) from an audio blob.
   #

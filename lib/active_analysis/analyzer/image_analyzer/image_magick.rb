@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative "../image_analyzer"
+
 module ActiveAnalysis
   # This analyzer relies on the third-party {MiniMagick}[https://github.com/minimagick/minimagick] gem. MiniMagick requires
   # the {ImageMagick}[http://www.imagemagick.org] system library.

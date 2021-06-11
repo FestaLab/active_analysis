@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative "../analyzer"
+
 module ActiveAnalysis
   # This is an abstract base class for image analyzers, which extract width and height from an image blob.
   #

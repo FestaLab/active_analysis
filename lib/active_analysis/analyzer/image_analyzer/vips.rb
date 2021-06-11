@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative "../image_analyzer"
+
 module ActiveAnalysis
   # This analyzer relies on the third-party {ruby-vips}[https://github.com/libvips/ruby-vips] gem. Ruby-vips requires
   # the {libvips}[https://libvips.github.io/libvips/] system library.
