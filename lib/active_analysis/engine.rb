@@ -6,13 +6,19 @@ require "marcel"
 require "ruby-vips"
 require "mini_magick"
 
+require_relative "analyzer"
+require_relative "analyzer/image_analyzer"
+require_relative "analyzer/image_analyzer/vips"
+require_relative "analyzer/image_analyzer/image_magick"
+require_relative "analyzer/audio_analyzer"
+require_relative "analyzer/video_analyzer"
+require_relative "analyzer/pdf_analyzer"
+
 module ActiveAnalysis
   class Engine < ::Rails::Engine
     isolate_namespace ActiveAnalysis
 
     config.active_analysis                             = ActiveSupport::OrderedOptions.new
-    config.active_analysis.analyzers                   = [ActiveAnalysis::Analyzer::Url]
-
     config.eager_load_namespaces << ActiveAnalysis
 
     initializer "active_analysis.configs" do
@@ -24,11 +30,15 @@ module ActiveAnalysis
     end
 
     initializer "active_analysis.core_extensions" do
-      require_relative "core_extensions/active_storage/image_analyzer"
-
       config.after_initialize do |app|
         app.config.active_storage.analyzers.delete ActiveStorage::Analyzer::ImageAnalyzer
-        app.config.active_storage.analyzers.prepend CoreExtensions::ActiveStorage::ImageAnalyzer
+        app.config.active_storage.analyzers.delete ActiveStorage::Analyzer::VideoAnalyzer
+
+        app.config.active_storage.analyzers.append Analyzer::ImageAnalyzer::Vips
+        app.config.active_storage.analyzers.append Analyzer::ImageAnalyzer::ImageMagick
+        app.config.active_storage.analyzers.append Analyzer::VideoAnalyzer
+        app.config.active_storage.analyzers.append Analyzer::AudioAnalyzer
+        app.config.active_storage.analyzers.append Analyzer::PDFAnalyzer
       end
     end
   end

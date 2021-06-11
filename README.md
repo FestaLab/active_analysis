@@ -18,6 +18,11 @@ And then execute:
 
 ## Usage
 
+Active Analyzers will automatically add all its analyzers to Active Storage's analyzers array. Don't worry, if you added any custom analyzers they will be there. You can check the comments in the source code of each analyzer to see what information they extract from files:
+- Audio: [source](https://github.com/FestaLab/active_analysis/blob/main/lib/active_analysis/analyzer/audio_analyzer.rb)
+- Image: [source](https://github.com/FestaLab/active_analysis/blob/main/lib/active_analysis/analyzer/image_analyzer.rb)
+- PDF: [source](https://github.com/FestaLab/active_analysis/blob/main/lib/active_analysis/analyzer/pdf_analyzer.rb)
+- Video: [source](https://github.com/FestaLab/active_analysis/blob/main/lib/active_analysis/analyzer/video_analyzer.rb)
 
 ## Development
 

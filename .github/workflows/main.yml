@@ -15,6 +15,9 @@ jobs:
       run:
         sudo -E apt-get install --fix-missing -qq -o Acquire::Retries=3
         libvips-tools
+        imagemagick
+        ffmpeg
+        poppler-utils
 
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
