@@ -36,16 +36,16 @@ module ActiveAnalysis
       end
     end
 
-    test "analyzing a transparent PNG" do
+    test "analyzing a transparent image" do
       analyze_with_vips do
-        blob = create_file_blob(filename: "transparent.png", content_type: "image/png")
+        blob = create_file_blob(filename: "image.gif", content_type: "image/gif")
         metadata = extract_metadata_from(blob)
 
         assert_not metadata[:opaque]
       end
     end
 
-    test "analyzing an opaque PNG with alpha channel" do
+    test "analyzing an opaque image with alpha channel" do
       analyze_with_vips do
         blob = create_file_blob(filename: "opaque.png", content_type: "image/png")
         metadata = extract_metadata_from(blob)
