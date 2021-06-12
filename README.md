@@ -35,6 +35,9 @@ A modification of the original image analyzer and a new analyzer. Requires the [
 
 - Width (pixels)
 - Height (pixels)
+- Opaque (true if file is opaque, false if not)
+
+An image will be considered opaque if it does not have an alpha channel, or if none of its pixels have an alpha value below the minimum (as defined by the library).
 
 #### PDF
 A new analyzer. Requires the [poppler](https://poppler.freedesktop.org/) system library.

@@ -7,7 +7,7 @@ module ActiveAnalysis
   # the {ImageMagick}[http://www.imagemagick.org] system library.
   class Analyzer::ImageAnalyzer::ImageMagick < Analyzer::ImageAnalyzer
     def self.accept?(blob)
-      super && ActiveStorage.variant_processor == :mini_magick
+      super && ActiveAnalysis.image_library == :mini_magick
     end
 
     private
@@ -33,6 +33,11 @@ module ActiveAnalysis
 
       def rotated_image?(image)
         %w[ RightTop LeftBottom TopRight BottomLeft ].include?(image["%[orientation]"])
+      end
+
+      def opaque?(image)
+        return true unless image.data["channelDepth"].key?("alpha")
+        image.data["channelStatistics"]["alpha"]["min"] == 255
       end
   end
 end

@@ -7,14 +7,14 @@ module ActiveAnalysis
   # the {libvips}[https://libvips.github.io/libvips/] system library.
   class Analyzer::ImageAnalyzer::Vips < Analyzer::ImageAnalyzer
     def self.accept?(blob)
-      super && ActiveStorage.variant_processor == :vips
+      super && ActiveAnalysis.image_library == :vips
     end
 
     private
       def read_image
         download_blob_to_tempfile do |file|
           require "ruby-vips"
-          image = ::Vips::Image.new_from_file(file.path, access: :sequential)
+          image = ::Vips::Image.new_from_file(file.path)
 
           if valid_image?(image)
             yield image
@@ -39,6 +39,11 @@ module ActiveAnalysis
         false
       end
 
+      def opaque?(image)
+        return true unless image.has_alpha?
+        image[image.bands - 1].min == 255
+      end
+
       def valid_image?(image)
         image.avg
         true
@@ -47,4 +52,3 @@ module ActiveAnalysis
       end
   end
 end
-
