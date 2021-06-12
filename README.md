@@ -18,11 +18,47 @@ And then execute:
 
 ## Usage
 
-Active Analyzers will automatically add all its analyzers to Active Storage's analyzers array. Don't worry, if you added any custom analyzers they will be there. You can check the comments in the source code of each analyzer to see what information they extract from files:
-- Audio: [source](https://github.com/FestaLab/active_analysis/blob/main/lib/active_analysis/analyzer/audio_analyzer.rb)
-- Image: [source](https://github.com/FestaLab/active_analysis/blob/main/lib/active_analysis/analyzer/image_analyzer.rb)
-- PDF: [source](https://github.com/FestaLab/active_analysis/blob/main/lib/active_analysis/analyzer/pdf_analyzer.rb)
-- Video: [source](https://github.com/FestaLab/active_analysis/blob/main/lib/active_analysis/analyzer/video_analyzer.rb)
+Active Analysis automatically replaces all of Rails default analyzers with its own. It will not remove other custom analyzers if you have them. You can also configure which analyzers will be inserted.
+
+```ruby
+Rails.application.configure do |config|
+  config.active_analysis.image_library  = :vips # Defaults to the same as active storage
+  config.active_analysis.image_analyzer = true  # Defaults to true
+  config.active_analysis.audio_analyzer = true  # Defaults to true
+  config.active_analysis.pdf_analyzer   = false # Defaults to true
+  config.active_analysis.video_analyzer = false # Defaults to true
+end
+```
+
+#### Image
+A modification of the original image analyzer and a new analyzer. Requires the [ImageMagick](http://www.imagemagick.org) system library or the [libvips](https://github.com/libvips/libvips) system library.
+
+- Width (pixels)
+- Height (pixels)
+
+#### PDF
+A new analyzer. Requires the [poppler](https://poppler.freedesktop.org/) system library.
+
+- Width (pixels)
+- Height (pixels)
+- Pages
+
+#### Audio
+A new analyzer. Requires the [FFmpeg](https://www.ffmpeg.org) system library.
+
+- Duration (seconds)
+- Bit Rate (bits/second)
+
+#### Video
+A modification of the original video analyzer. Requires the [FFmpeg](https://www.ffmpeg.org) system library
+
+- Width (pixels)
+- Height (pixels)
+- Duration (seconds)
+- Angle (degrees)
+- Display aspect ratio
+- Audio (true if file has an audio channel, false if not)
+- Video (true if file has an video channel, false if not)
 
 ## Development
 

@@ -18,27 +18,41 @@ module ActiveAnalysis
   class Engine < ::Rails::Engine
     isolate_namespace ActiveAnalysis
 
-    config.active_analysis                             = ActiveSupport::OrderedOptions.new
+    config.active_analysis = ActiveSupport::OrderedOptions.new
     config.eager_load_namespaces << ActiveAnalysis
 
     initializer "active_analysis.configs" do
       config.after_initialize do |app|
-        ActiveAnalysis.logger                          = app.config.active_analysis.logger || Rails.logger
-        ActiveAnalysis.analyzers                       = app.config.active_analysis.analyzers || []
-        ActiveAnalysis.image_library                   = app.config.active_analysis.image_library || app.config.active_storage.variant_processor
+        ActiveAnalysis.logger         = app.config.active_analysis.logger         || Rails.logger
+        ActiveAnalysis.image_library  = app.config.active_analysis.image_library  || app.config.active_storage.variant_processor
+        ActiveAnalysis.image_analyzer = app.config.active_analysis.image_analyzer || true
+        ActiveAnalysis.audio_analyzer = app.config.active_analysis.audio_analyzer || true
+        ActiveAnalysis.pdf_analyzer   = app.config.active_analysis.pdf_analyzer   || true
+        ActiveAnalysis.video_analyzer = app.config.active_analysis.video_analyzer || true
       end
     end
 
-    initializer "active_analysis.core_extensions" do
+    initializer "active_analysis.analyzers" do
       config.after_initialize do |app|
-        app.config.active_storage.analyzers.delete ActiveStorage::Analyzer::ImageAnalyzer
-        app.config.active_storage.analyzers.delete ActiveStorage::Analyzer::VideoAnalyzer
+        if ActiveAnalysis.image_analyzer
+          app.config.active_storage.analyzers.delete ActiveStorage::Analyzer::ImageAnalyzer
+          app.config.active_storage.analyzers.append Analyzer::ImageAnalyzer::Vips
+          app.config.active_storage.analyzers.append Analyzer::ImageAnalyzer::ImageMagick
+        end
 
-        app.config.active_storage.analyzers.append Analyzer::ImageAnalyzer::Vips
-        app.config.active_storage.analyzers.append Analyzer::ImageAnalyzer::ImageMagick
-        app.config.active_storage.analyzers.append Analyzer::VideoAnalyzer
-        app.config.active_storage.analyzers.append Analyzer::AudioAnalyzer
-        app.config.active_storage.analyzers.append Analyzer::PDFAnalyzer
+        if ActiveAnalysis.video_analyzer
+          app.config.active_storage.analyzers.delete ActiveStorage::Analyzer::VideoAnalyzer
+          app.config.active_storage.analyzers.append Analyzer::VideoAnalyzer
+        end
+
+        if ActiveAnalysis.audio_analyzer
+          app.config.active_storage.analyzers.delete ActiveStorage::Analyzer::ImageAnalyzer if defined?(ActiveStorage::Analyzer::ImageAnalyzer)
+          app.config.active_storage.analyzers.append Analyzer::AudioAnalyzer
+        end
+
+        if ActiveAnalysis.pdf_analyzer
+          app.config.active_storage.analyzers.append Analyzer::PDFAnalyzer
+        end
       end
     end
   end

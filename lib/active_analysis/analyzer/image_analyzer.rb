@@ -9,7 +9,7 @@ module ActiveAnalysis
   #
   # Example:
   #
-  #   ActiveAnalysis::CoreExtensionsAnalyzer::ImageAnalyzer::ImageMagick.new(blob).metadata
+  #   ActiveAnalysis::Analyzer::ImageAnalyzer::ImageMagick.new(blob).metadata
   #   # => { width: 4104, height: 2736 }
   class Analyzer::ImageAnalyzer < Analyzer
     def self.accept?(blob)

@@ -7,7 +7,7 @@ module ActiveAnalysis
   #
   # Example:
   #
-  #   ActiveAnalysis::CoreExtensionsAnalyzer::PDFAnalyzer::Poppler.new(blob).metadata
+  #   ActiveAnalysis::Analyzer::PDFAnalyzer::Poppler.new(blob).metadata
   #   # => { width: 4104, height: 2736, pages: 10 }
   #
   # This analyzer requires the {poppler}[https://poppler.freedesktop.org/] system library, which is not provided by Rails.
