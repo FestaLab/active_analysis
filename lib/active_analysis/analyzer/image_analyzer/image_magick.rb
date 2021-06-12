@@ -39,7 +39,7 @@ module ActiveAnalysis
         return true unless image.data["channelDepth"].key?("alpha")
 
         value = image.data["version"] =~ /7.\d/ ? 255 : 0
-        image.data["channelStatistics"]["alpha"]["min"] == value
+        image.data["channelStatistics"]["alpha"]["mean"] == value
       end
   end
 end
