@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    active_analysis (0.2.0)
+    active_analysis (0.2.1)
       activestorage (>= 6.0)
       activesupport (>= 6.0)
       mini_magick (>= 4.1)

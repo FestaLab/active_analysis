@@ -12,5 +12,9 @@ module ActiveAnalysis
       assert_includes analyzers, Analyzer::AudioAnalyzer
       assert_includes analyzers, Analyzer::PDFAnalyzer
     end
+
+    test "that image library is loaded" do
+      assert_equal :mini_magick, ActiveAnalysis.image_library
+    end
   end
 end

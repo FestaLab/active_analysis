@@ -24,7 +24,7 @@ module ActiveAnalysis
     initializer "active_analysis.configs" do
       config.after_initialize do |app|
         ActiveAnalysis.logger         = app.config.active_analysis.logger         || Rails.logger
-        ActiveAnalysis.image_library  = app.config.active_analysis.image_library  || app.config.active_storage.variant_processor
+        ActiveAnalysis.image_library  = app.config.active_analysis.image_library  || app.config.active_storage.variant_processor || :mini_magick
         ActiveAnalysis.image_analyzer = app.config.active_analysis.image_analyzer || true
         ActiveAnalysis.audio_analyzer = app.config.active_analysis.audio_analyzer || true
         ActiveAnalysis.pdf_analyzer   = app.config.active_analysis.pdf_analyzer   || true
