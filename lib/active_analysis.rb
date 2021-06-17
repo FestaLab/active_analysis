@@ -7,9 +7,12 @@ module ActiveAnalysis
   autoload :FixtureSet
 
   mattr_accessor :logger
+
   mattr_accessor :image_library
   mattr_accessor :image_analyzer
   mattr_accessor :audio_analyzer
   mattr_accessor :pdf_analyzer
   mattr_accessor :video_analyzer
+
+  mattr_accessor :addons
 end
