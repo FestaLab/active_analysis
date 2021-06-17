@@ -72,7 +72,8 @@ end
 ```
 
 The following addons available:
-- ImageAddon::OptimalQuality: An EXPERIMENTAL addon that calculates the optimal image quality using a DSSIM of 0.001. This addons is pretty resource hungry
+- ImageAddon::OptimalQuality: An EXPERIMENTAL addon that calculates the optimal image quality using a DSSIM of 0.001. This addons is pretty resource hungry.
+- ImageAddon::WhiteBackground: An EXPERIMENTAL addon that checks if the image has a white background. Requires both vips and image magick to be installed.
 
 ## Development
 
