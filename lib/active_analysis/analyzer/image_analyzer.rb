@@ -19,9 +19,9 @@ module ActiveAnalysis
     def metadata
       read_image do |image|
         if rotated_image?(image)
-          { width: image.height, height: image.width, opaque: opaque?(image) }
+          { width: image.height, height: image.width, opaque: opaque?(image), **addons(image) }.compact
         else
-          { width: image.width, height: image.height, opaque: opaque?(image) }
+          { width: image.width, height: image.height, opaque: opaque?(image), **addons(image) }.compact
         end
       end
     end
@@ -37,6 +37,10 @@ module ActiveAnalysis
 
       def opaque?(image)
         raise NotImplementedError
+      end
+
+      def addons(image)
+        ActiveAnalysis.addons.select { |addon| addon.accept?(blob) }.map { |addon_class| addon_class.new(image.path).metadata }.reduce({}, :merge)
       end
   end
 end
