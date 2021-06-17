@@ -36,7 +36,7 @@ module ActiveAnalysis
         basename = File.basename(file.path, extname)
 
         Tempfile.create(["#{basename}_#{quality}", extname]) do |tempfile|
-          ::ImageProcessing::MiniMagick.apply(saver: { format: "jpg", quality: quality }).call(file.path, destination: tempfile.path)
+          processor.apply(saver: { format: "jpg", quality: quality }).call(file.path, destination: tempfile.path)
           yield tempfile
         end
       end
