@@ -71,6 +71,9 @@ Rails.application.configure do |config|
 end
 ```
 
+The following addons available:
+- ImageAddon::OptimalQuality: An EXPERIMENTAL addon that calculates the optimal image quality using a DSSIM of 0.001. This addons is pretty resource hungry
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
