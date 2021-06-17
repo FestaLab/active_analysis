@@ -27,12 +27,6 @@ module ActiveAnalysis
       def calculate_dssim(quality)
         image_with_quality(quality) do |image|
           dssim = `dssim #{filepath} #{image.path}`
-          puts "=" * 90
-          puts File.exists? filepath
-          puts File.exists? image.path
-          puts "dssim #{filepath} #{image.path}"
-          puts dssim
-          puts "=" * 90
           Float dssim.split.first
         end
       end
@@ -42,7 +36,7 @@ module ActiveAnalysis
         basename = File.basename(filepath, extname)
 
         Tempfile.create(["#{basename}_#{quality}", extname]) do |tempfile|
-          ::ImageProcessing::Vips.apply(saver: { format: "jpg", quality: quality }).call(filepath, destination: tempfile.path)
+          ::ImageProcessing::MiniMagick.apply(saver: { format: "jpg", quality: quality }).call(filepath, destination: tempfile.path)
           yield tempfile
         end
       end
