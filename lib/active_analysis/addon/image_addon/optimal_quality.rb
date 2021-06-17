@@ -25,6 +25,9 @@ module ActiveAnalysis
       def calculate_dssim(quality)
         image_with_quality(quality) do |image|
           dssim = `dssim #{filepath} #{image.path}`
+          puts "=" * 90
+          puts dssim
+          puts "=" * 90
           Float dssim.split.first
         end
       end
