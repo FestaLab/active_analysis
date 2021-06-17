@@ -9,11 +9,16 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Install Ubuntu dependencies
+    - name: Install Ubuntu dependencies from snap
       env:
         DEBIAN_FRONTEND: noninteractive
       run:
         sudo -E snap install dssim
+
+    - name: Install Ubuntu dependencies from apt
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run:
         sudo -E apt-get install --fix-missing -qq -o Acquire::Retries=3
         libvips-tools
         imagemagick
