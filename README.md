@@ -64,7 +64,7 @@ A modification of the original video analyzer. Requires the [FFmpeg](https://www
 - Video (true if file has an video channel, false if not)
 
 ## Addons
-Active Analysis allows additional features to be added to the analyzers through addons. To create an addon simply inherit the `Addon` class and add it to the addons array in the configuration.
+Active Analysis allows additional features to be added to the image analyzers through addons. To create an addon simply inherit the `Addon` class and add it to the addons array in the configuration.
 ```ruby
 Rails.application.configure do |config|
   config.active_analysis.addons << ActiveAnalysis::Addon::ImageAddon::OptimalQuality
