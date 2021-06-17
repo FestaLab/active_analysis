@@ -13,8 +13,8 @@ module ActiveAnalysis
         corners = extract_corner_areas(file)
         colors = corners.map { |corner| primary_color_for(corner) }
         colors.all? { |color| color.all? { |value| value > 250 } }
-      rescue => error
-        puts error
+      rescue
+        nil
       end
 
       def extract_corner_areas(image)
