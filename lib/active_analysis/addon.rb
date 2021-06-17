@@ -3,14 +3,14 @@
 module ActiveAnalysis
   # This is an abstract base class for analyzer addons, which extract extra metadata from blobs.
   class Addon
-    attr_reader :filepath
+    attr_reader :file
 
     def self.accept?(blob)
       false
     end
 
-    def initialize(filepath)
-      @filepath = filepath
+    def initialize(file)
+      @file = file
     end
 
     def metadata
