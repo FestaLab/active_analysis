@@ -1,6 +1,10 @@
 ## [Unreleased]
 
-## [0.2] - 2021-05-01
+## [0.3] - 2021-06-17
+
+- Added addons feature
+
+## [0.2] - 2021-06-01
 
 - Added `opaque` metadata value to images
 
