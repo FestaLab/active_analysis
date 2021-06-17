@@ -15,7 +15,7 @@ module ActiveAnalysis
         loop do
           new_quality = quality - 5
           dssim = calculate_dssim(new_quality)
-          break if dssim > 0.001 || quality <= 50
+          break if dssim > 0.002 || quality <= 50
           quality = new_quality
         end
 
@@ -28,6 +28,8 @@ module ActiveAnalysis
         image_with_quality(quality) do |image|
           dssim = `dssim #{filepath} #{image.path}`
           puts "=" * 90
+          puts File.exists? filepath
+          puts File.exists? image.path
           puts "dssim #{filepath} #{image.path}"
           puts dssim
           puts "=" * 90
