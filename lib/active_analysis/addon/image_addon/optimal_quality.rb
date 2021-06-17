@@ -17,8 +17,6 @@ module ActiveAnalysis
           dssim = calculate_dssim(new_quality)
           break if dssim > 0.001 || quality <= 50
           quality = new_quality
-
-          p [quality, dssim]
         end
 
         quality

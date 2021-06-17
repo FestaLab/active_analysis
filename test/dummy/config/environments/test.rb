@@ -59,5 +59,5 @@ Rails.application.configure do
 
   # [Breno] Enable stdout logger
   config.logger = Logger.new(STDOUT)
-  config.log_level = :debug
+  config.log_level = :error
 end
