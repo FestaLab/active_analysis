@@ -13,7 +13,7 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run:
-        sudo snap install dssim
+        sudo -E snap install dssim
         sudo -E apt-get install --fix-missing -qq -o Acquire::Retries=3
         libvips-tools
         imagemagick
