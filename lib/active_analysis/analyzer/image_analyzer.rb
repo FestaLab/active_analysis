@@ -40,7 +40,7 @@ module ActiveAnalysis
       end
 
       def addons(image)
-        ActiveAnalysis.addons.select { |addon| addon.accept?(blob) }.map { |addon_class| addon_class.new(image.path).metadata }.reduce({}, :merge)
+        ActiveAnalysis.addons.select { |addon| addon.accept?(blob) }.map { |addon_class| addon_class.new(image).metadata }.reduce({}, :merge).compact
       end
   end
 end

@@ -27,7 +27,6 @@ module ActiveAnalysis
         logger.info "Skipping image analysis because the mini_magick gem isn't installed"
         {}
       rescue MiniMagick::Error => error
-        puts "Skipping image analysis due to an ImageMagick error: #{error.message}"
         logger.error "Skipping image analysis due to an ImageMagick error: #{error.message}"
         {}
       end

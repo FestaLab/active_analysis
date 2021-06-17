@@ -63,6 +63,18 @@ A modification of the original video analyzer. Requires the [FFmpeg](https://www
 - Audio (true if file has an audio channel, false if not)
 - Video (true if file has an video channel, false if not)
 
+## Addons
+Active Analysis allows additional features to be added to the image analyzers through addons. To create an addon simply inherit the `Addon` class and add it to the addons array in the configuration.
+```ruby
+Rails.application.configure do |config|
+  config.active_analysis.addons << ActiveAnalysis::Addon::ImageAddon::OptimalQuality
+end
+```
+
+The following addons available:
+- ImageAddon::OptimalQuality: An EXPERIMENTAL addon that calculates the optimal image quality using a DSSIM of 0.001. This addon is SLOOOOOOW.
+- ImageAddon::WhiteBackground: An EXPERIMENTAL addon that checks if the image has a white background. Requires both vips and image magick to be installed.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
