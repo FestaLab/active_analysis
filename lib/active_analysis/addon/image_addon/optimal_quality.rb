@@ -20,8 +20,8 @@ module ActiveAnalysis
         end
 
         quality
-      rescue
-        nil
+        # rescue
+        #   nil
       end
 
       def calculate_dssim(quality)
@@ -32,7 +32,7 @@ module ActiveAnalysis
       end
 
       def image_with_quality(quality)
-        extname  = File.extname(filepath)
+        extname = File.extname(filepath)
         basename = File.basename(filepath, extname)
 
         Tempfile.create(["#{basename}_#{quality}", extname]) do |tempfile|
@@ -42,7 +42,12 @@ module ActiveAnalysis
       end
 
       def filepath
-        ActiveAnalysis.image_library == :vips ? file.filename : file.path
+        @filepath ||= begin
+          old_path = ActiveAnalysis.image_library == :vips ? file.filename : file.path
+          Rails.root.join("tmp", File.basename(old_path)).tap do |new_path|
+            `cp #{old_path} #{new_path}` # DSSIM does not like the file that active storage is keeping open.
+          end
+        end
       end
 
       def processor

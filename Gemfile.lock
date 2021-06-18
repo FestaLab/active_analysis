@@ -5,6 +5,7 @@ PATH
       activestorage (>= 6.0)
       activesupport (>= 6.0)
       image_processing (>= 1.2)
+      sqlite3 (~> 1.4)
 
 GEM
   remote: https://rubygems.org/
@@ -185,7 +186,6 @@ DEPENDENCIES
   rubocop-packaging (~> 0.5)
   rubocop-performance (~> 1.11)
   rubocop-rails (~> 2.10)
-  sqlite3 (~> 1.4)
 
 BUNDLED WITH
    2.1.4

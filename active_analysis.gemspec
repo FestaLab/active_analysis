@@ -28,8 +28,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency "activesupport",    ">= 6.0"
   spec.add_dependency "image_processing", ">= 1.2"
 
-  spec.add_development_dependency "sqlite3",             "~> 1.4"
   spec.add_development_dependency "byebug",              "~> 11.1"
+  spec.add_dependency "sqlite3",             "~> 1.4"
   spec.add_development_dependency "rubocop",             "~> 1.14"
   spec.add_development_dependency "rubocop-performance", "~> 1.11"
   spec.add_development_dependency "rubocop-packaging",   "~> 0.5"
