@@ -15,7 +15,7 @@ module ActiveAnalysis
         loop do
           new_quality = quality - 5
           dssim = calculate_dssim(new_quality)
-          break if dssim > 0.001 || quality <= 50
+          break if dssim > 0.001 || quality < 55
           quality = new_quality
         end
 
@@ -26,19 +26,23 @@ module ActiveAnalysis
 
       def calculate_dssim(quality)
         image_with_quality(quality) do |image|
-          dssim = `dssim #{file.path} #{image.path}`
+          dssim = `dssim #{filepath} #{image.path}`
           Float dssim.split.first
         end
       end
 
       def image_with_quality(quality)
-        extname  = File.extname(file.path)
-        basename = File.basename(file.path, extname)
+        extname  = File.extname(filepath)
+        basename = File.basename(filepath, extname)
 
         Tempfile.create(["#{basename}_#{quality}", extname]) do |tempfile|
-          processor.apply(saver: { format: "jpg", quality: quality }).call(file.path, destination: tempfile.path)
+          processor.apply(saver: { format: "jpg", quality: quality }).call(filepath, destination: tempfile.path)
           yield tempfile
         end
+      end
+
+      def filepath
+        ActiveAnalysis.image_library == :vips ? file.filename : file.path
       end
 
       def processor
@@ -46,4 +50,3 @@ module ActiveAnalysis
       end
   end
 end
-
