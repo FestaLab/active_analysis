@@ -3,10 +3,11 @@
 require_relative "../addon"
 
 module ActiveAnalysis
-  # This is an abstract base class for image addons
+  # This is an abstract base class for image addons. Image addons are only executed for original
+  # blobs.
   class Addon::ImageAddon < Addon
     def self.accept?(blob)
-      blob.image?
+      blob.image? && blob.attachments.none? { |attachment| attachment.record_type == ActiveStorage::VariantRecord }
     end
 
     def metadata
@@ -14,4 +15,3 @@ module ActiveAnalysis
     end
   end
 end
-

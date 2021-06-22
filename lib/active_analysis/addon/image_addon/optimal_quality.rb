@@ -10,18 +10,16 @@ module ActiveAnalysis
 
     private
       def calculate_optimal_quality
-        quality = 85
+        optimal = 80
 
         loop do
-          new_quality = quality - 5
-          dssim = calculate_dssim(new_quality)
-          break if dssim > 0.001 || quality < 55
-          quality = new_quality
+          candidate = optimal - 5
+          dssim = calculate_dssim(candidate)
+
+          dssim >= 0.001 || candidate <= 50 ? break : optimal = candidate
         end
 
-        quality
-      rescue
-        nil
+        optimal
       end
 
       def calculate_dssim(quality)

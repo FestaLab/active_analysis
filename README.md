@@ -72,7 +72,7 @@ end
 ```
 
 The following addons available:
-- ImageAddon::OptimalQuality: An EXPERIMENTAL addon that calculates the optimal image quality using a DSSIM of 0.001. This addon is SLOOOOOOW.
+- ImageAddon::OptimalQuality: An EXPERIMENTAL addon that calculates the optimal image quality using a DSSIM of 0.001. This addon is **very slow** and it requires the [dissm library](https://github.com/kornelski/dssim) version 3.1+
 - ImageAddon::WhiteBackground: An EXPERIMENTAL addon that checks if the image has a white background. Requires both vips and image magick to be installed.
 
 ## Development

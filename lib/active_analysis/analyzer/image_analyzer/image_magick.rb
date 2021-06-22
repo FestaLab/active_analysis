@@ -38,9 +38,8 @@ module ActiveAnalysis
       def opaque?(image)
         return true unless image.data["channelDepth"].key?("alpha")
 
-        value = image.data["version"] =~ /7.\d/ ? 255 : 0
+        value = /7.\d/.match?(image.data["version"]) ? 255 : 0
         image.data["channelStatistics"]["alpha"]["mean"] == value
       end
   end
 end
-

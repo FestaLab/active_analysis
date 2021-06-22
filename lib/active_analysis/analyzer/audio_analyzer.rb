@@ -63,4 +63,3 @@ module ActiveAnalysis
       end
   end
 end
-

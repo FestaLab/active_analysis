@@ -1,10 +1,21 @@
 ## [Unreleased]
 
-## [0.3] - 2021-06-17
+## [0.4.0] - 2021-06-22 
+
+- Remove the new Rails analyzers
+- Do not detect optimal quality of variants
+- Start optimal quality calculation at quality = 75 to match Vitals Image quality = 80
+- Fix Rubocop offenses
+
+## [0.3.1] - 2021-06-17
+
+- Fix vips image path call
+
+## [0.3.0] - 2021-06-17
 
 - Added addons feature
 
-## [0.2] - 2021-06-01
+## [0.2.0] - 2021-06-01
 
 - Added `opaque` metadata value to images
 

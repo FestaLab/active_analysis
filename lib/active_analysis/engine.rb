@@ -46,6 +46,9 @@ module ActiveAnalysis
       config.after_initialize do |app|
         if ActiveAnalysis.image_analyzer
           app.config.active_storage.analyzers.delete ActiveStorage::Analyzer::ImageAnalyzer
+          app.config.active_storage.analyzers.delete ActiveStorage::Analyzer::ImageAnalyzer::Vips if defined?(ActiveStorage::Analyzer::ImageAnalyzer::Vips)
+          app.config.active_storage.analyzers.delete ActiveStorage::Analyzer::ImageAnalyzer::ImageMagick if defined?(ActiveStorage::Analyzer::ImageAnalyzer::ImageMagick)
+
           app.config.active_storage.analyzers.append Analyzer::ImageAnalyzer::Vips
           app.config.active_storage.analyzers.append Analyzer::ImageAnalyzer::ImageMagick
         end
@@ -56,7 +59,7 @@ module ActiveAnalysis
         end
 
         if ActiveAnalysis.audio_analyzer
-          app.config.active_storage.analyzers.delete ActiveStorage::Analyzer::ImageAnalyzer if defined?(ActiveStorage::Analyzer::ImageAnalyzer)
+          app.config.active_storage.analyzers.delete ActiveStorage::Analyzer::AudioAnalyzer if defined?(ActiveStorage::Analyzer::AudioAnalyzer)
           app.config.active_storage.analyzers.append Analyzer::AudioAnalyzer
         end
 
