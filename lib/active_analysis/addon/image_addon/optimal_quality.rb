@@ -16,7 +16,7 @@ module ActiveAnalysis
           candidate = optimal - 5
           dssim = calculate_dssim(candidate)
 
-          dssim >= 0.001 || candidate <= 50 ? break : optimal = candidate
+          dssim >= target_dssim || candidate <= minimum_quality ? break : optimal = candidate
         end
 
         optimal
@@ -41,6 +41,14 @@ module ActiveAnalysis
 
       def filepath
         ActiveAnalysis.image_library == :vips ? file.filename : file.path
+      end
+
+      def target_dssim
+        0.001
+      end
+
+      def minimum_quality
+        50
       end
 
       def processor

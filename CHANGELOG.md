@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+- Make it easier to override target dssim and minimum quality in the optimal quality addon
+
 ## [0.4.0] - 2021-06-22 
 
 - Remove the new Rails analyzers
