@@ -67,12 +67,11 @@ A modification of the original video analyzer. Requires the [FFmpeg](https://www
 Active Analysis allows additional features to be added to the image analyzers through addons. To create an addon simply inherit the `Addon` class and add it to the addons array in the configuration.
 ```ruby
 Rails.application.configure do |config|
-  config.active_analysis.addons << ActiveAnalysis::Addon::ImageAddon::OptimalQuality
+  config.active_analysis.addons << ActiveAnalysis::Addon::ImageAddon::WhiteBackground
 end
 ```
 
 The following addons available:
-- ImageAddon::OptimalQuality: An EXPERIMENTAL addon that calculates the optimal image quality using a DSSIM of 0.001. This addon is **very slow** and it requires the [dissm library](https://github.com/kornelski/dssim) version 3.1+
 - ImageAddon::WhiteBackground: An EXPERIMENTAL addon that checks if the image has a white background. Requires both vips and image magick to be installed.
 
 ## Development

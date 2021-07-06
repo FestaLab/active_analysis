@@ -17,7 +17,6 @@ require_relative "analyzer/pdf_analyzer"
 
 require_relative "addon"
 require_relative "addon/image_addon"
-require_relative "addon/image_addon/optimal_quality"
 require_relative "addon/image_addon/white_background"
 
 module ActiveAnalysis
