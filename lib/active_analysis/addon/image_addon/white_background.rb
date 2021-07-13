@@ -20,7 +20,7 @@ module ActiveAnalysis
       def extract_corner_areas(image)
         paths = []
 
-        image_path = ActiveAnalysis.image_analyzer == :vips ? image.filename : image.path
+        image_path = ActiveAnalysis.image_library == :vips ? image.filename : image.path
         basename   = SecureRandom.urlsafe_base64
         width      = image.width
         height     = image.height
