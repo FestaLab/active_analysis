@@ -13,6 +13,8 @@ module ActiveAnalysis
         corners = extract_corner_areas(file)
         colors = corners.map { |corner| primary_color_for(corner) }
         colors.all? { |color| color.all? { |value| value > 250 } }
+
+        cleanup(corners)
       rescue
         nil
       end
@@ -57,6 +59,14 @@ module ActiveAnalysis
 
       def extract_dominant_rgb(array)
         array.map { |line| line[1].match(/\(([\d.,]+)/).captures.first.split(",").take(3).map(&:to_i) }.first
+      end
+
+      def cleanup(files)
+        files.each do |file|
+          File.delete(file)
+        rescue Errno::ENOENT
+          # File does not exist
+        end
       end
   end
 end
