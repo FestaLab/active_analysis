@@ -6,7 +6,7 @@ module ActiveAnalysis
   class Addon::ImageAddon::WhiteBackgroundTest < ActiveSupport::TestCase
     test "that white background is detected with vips" do
       with_white_background_addon(:vips) do
-        blob = create_file_blob(filename: "opaque.png", content_type: "image/png")
+        blob = create_file_blob(filename: "opaque.jpg", content_type: "image/png")
         metadata = extract_metadata_from(blob)
         assert metadata[:white_background]
 
@@ -18,7 +18,7 @@ module ActiveAnalysis
 
     test "that white background is detected with image_magick" do
       with_white_background_addon(:mini_magick) do
-        blob = create_file_blob(filename: "opaque.png", content_type: "image/png")
+        blob = create_file_blob(filename: "opaque.jpg", content_type: "image/png")
         metadata = extract_metadata_from(blob)
         assert metadata[:white_background]
 

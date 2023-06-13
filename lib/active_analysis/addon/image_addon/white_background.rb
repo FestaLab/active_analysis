@@ -11,10 +11,9 @@ module ActiveAnalysis
     private
       def white_background?
         corners = extract_corner_areas(file)
-        colors = corners.map { |corner| primary_color_for(corner) }
-        colors.all? { |color| color.all? { |value| value > 250 } }
-
+        colors  = corners.map { |corner| primary_color_for(corner) }
         cleanup(corners)
+        colors.all? { |color| color.all? { |value| value > 250 } }
       rescue
         nil
       end

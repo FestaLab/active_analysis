@@ -7,3 +7,4 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gemspec
 
 gem "rails", [">= 6.0", "< 7.0"]
+gem "byebug"

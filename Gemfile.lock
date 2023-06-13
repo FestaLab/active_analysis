@@ -179,7 +179,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_analysis!
-  byebug (~> 11.1)
+  byebug
   rails (>= 6.0, < 7.0)
   rubocop (~> 1.14)
   rubocop-packaging (~> 0.5)
