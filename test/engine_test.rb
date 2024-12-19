@@ -14,7 +14,7 @@ module ActiveAnalysis
     end
 
     test "that image library is loaded" do
-      assert_equal :mini_magick, ActiveAnalysis.image_library
+      assert_equal :vips, ActiveAnalysis.image_library
     end
   end
 end

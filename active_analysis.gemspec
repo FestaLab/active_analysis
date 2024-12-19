@@ -24,11 +24,11 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = Gem::Requirement.new(">= 2.5.0")
 
-  spec.add_dependency "activestorage",    ">= 6.0"
-  spec.add_dependency "activesupport",    ">= 6.0"
+  spec.add_dependency "activestorage",    ">= 7.0"
+  spec.add_dependency "activesupport",    ">= 7.0"
   spec.add_dependency "image_processing", ">= 1.2"
 
-  spec.add_development_dependency "sqlite3",             "~> 1.4"
+  spec.add_development_dependency "sqlite3",             "~> 2.4"
   spec.add_development_dependency "byebug",              "~> 11.1"
   spec.add_development_dependency "rubocop",             "~> 1.14"
   spec.add_development_dependency "rubocop-performance", "~> 1.11"

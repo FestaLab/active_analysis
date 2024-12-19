@@ -49,7 +49,7 @@ module ActiveAnalysis
       end
 
       def generate_color_histogram(path)
-        `convert #{path} +dither -colors 5 -define histogram:unique-colors=true -format "%c" histogram:info:`
+        `magick #{path} +dither -colors 5 -define histogram:unique-colors=true -format "%c" histogram:info:`
       end
 
       def sort_by_frequency(histogram)
